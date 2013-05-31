@@ -6,7 +6,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 var nodeSessionId = Math.floor(Math.random()*10000);
 
-var url = "mongodb://54.214.247.68:27017/";
+var url = "54.214.247.68:27017/";
 console.log("Mongo url: " + url);
 // End mongodb required stuff
 

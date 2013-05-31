@@ -45,7 +45,6 @@ exports.allTrucks = function(req,res){
 				}else{
 					console.log('got all trucks, preparing setup data');
 					var setup = new Object();
-					console.log(trucks[trucks.length - 1])
 					setup.minMiles = trucks[trucks.length - 1].miles;
 					setup.maxMiles = setup.minMiles;
 					setup.minPrice = trucks[trucks.length - 1].price;

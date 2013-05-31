@@ -191,7 +191,8 @@ exports.updateTruck = function(req,res){
 						res.end();
 						return;
 					}else{
-						res.send(200,1);
+						res.send(200,'1');
+						console.log('sent 200');
 						db.close();
 						res.end();
 						// collection.find({_id:ObjectId(req.get('id'))}).toArray(function(err,result2){

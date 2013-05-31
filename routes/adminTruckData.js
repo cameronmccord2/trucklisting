@@ -183,7 +183,6 @@ exports.updateTruck = function(req,res){
 					return;
 				}
 				collection.update({_id:ObjectId(req.get('id'))}, specifics, function(err,result){
-					console.log("rows updated: " + result)
 					if(err){
 						console.log("error on find method for: " + req.get('whatField') + " with info: " + req.get('fieldData'));
 						res.send(400);
@@ -192,7 +191,6 @@ exports.updateTruck = function(req,res){
 						return;
 					}else{
 						res.send(200,'1');
-						console.log('sent 200');
 						db.close();
 						res.end();
 						// collection.find({_id:ObjectId(req.get('id'))}).toArray(function(err,result2){

@@ -26,6 +26,7 @@ console.log("api here" + nodeSessionId)
 
 exports.testDbCall = function(req,res){
 	Db.connect(url,function(err,db){
+		console.log('in connect function')
 		if(err){
 			res.send(500,"error connecting to db");
 			console.log("first connect error")
@@ -33,6 +34,7 @@ exports.testDbCall = function(req,res){
 			db.close();
 			return;
 		}else{
+			console.log('successful connect')
 			var collection = db.collection('testCollection');
 			collection.find().toArray(function(err,clicks){
 				if(err){

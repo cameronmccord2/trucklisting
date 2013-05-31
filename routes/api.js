@@ -25,6 +25,7 @@ var nodeSessionId = Math.floor(Math.random()*10000);
 console.log("api here" + nodeSessionId)
 
 exports.testDbCall = function(req,res){
+	console.log('in testdbcall')
 	Db.connect(url,function(err,db){
 		console.log('in connect function')
 		if(err){
@@ -49,4 +50,5 @@ exports.testDbCall = function(req,res){
 			});
 		}
 	});
+	console.log('after testdbcall')
 }

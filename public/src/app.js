@@ -55,7 +55,7 @@ truckListingApp.run(function ($rootScope) {
     //$rootScope.nodeUrl = 'http://trucklisting.azurewebsites.net';
 
     // $rootScope.nodeUrl = 'http://127.0.0.1:8080';
-    $rootScope.nodeUrl = '54.214.238.10';
+    $rootScope.nodeUrl = '54.214.238.10:8080';
 
     // global variables and statuses
     $rootScope.setupContactStatuses = function(){

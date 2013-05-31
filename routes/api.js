@@ -25,7 +25,7 @@ var nodeSessionId = Math.floor(Math.random()*10000);
 console.log("api here" + nodeSessionId)
 
 exports.testDbCall = function(req,res){
-	console.log("into test")
+	console.log("into test1")
 	res.write('hello there, this is a test');
 	res.end();
 }

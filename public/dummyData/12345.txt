@@ -1,0 +1,1 @@
+{"stockNumber":12345,"modelNumber":"VNL","model":"CENTURY","miles":560000,"engine":"CUMMINS","make":"Kenworth","priority":1,"year":2005,"price":20000,"images":["12345.jpg","12345_large.jpg"]}

@@ -1,0 +1,51 @@
+<div ng-include="'templates/navBar.html'"></div>
+<div class="cdLeft">
+	<div class="cdLeftLeft">
+		<div class="cdTitle">Name:</div>
+		<div class="cdTitle">Email:</div>
+		<div class="cdTitle">Phone #:</div>
+		<div class="cdTitle">Recieved:</div>
+		<div class="cdTitle">Best Contact:</div>
+		<div class="cdTitle">Truck:</div>
+		<div class="cdTitle">Comment:</div>
+		<div ng-show="flags.editSuccess == flagStatus.error" class="cdErrorText">There was an error updating this contact</div>
+	</div>
+	<div class="cdLeftRight">
+		<input class="cdName" type="text" name="name" ng-model="contactDetails.name" placeholder="Client Name" ng-change="editContactByField('name',contactDetails.name)"></input>
+		<input class="cdName" type="text" name="email" ng-model="contactDetails.email" placeholder="Client Email" ng-change="editContactByField('email',contactDetails.email)"></input>
+		<input class="cdName" type="text" name="phoneNumber" ng-model="contactDetails.phoneNumber" placeholder="Client Phone Number" ng-change="editContactByField('phoneNumber',contactDetails.phoneNumber)" maxlength="12"></input>
+		<div class="cdName" type="text" name="timeRecieved" ng-bind-html-unsafe="contactDetails.timeRecieved | date"></div>
+		<input class="cdName" type="text" name="whenBestContact" ng-model="contactDetails.whenBestContact"placeholder="Client Best Contact" ng-change="editContactByField('whenBestContact',contactDetails.whenBestContact)"></input>
+		<input class="cdName" type="text" name="truckStockNumber" ng-model="contactDetails.truckStockNumber" maxlength="5" placeholder="Client Stock Number" ng-change="editContactByField('truckStockNumber',contactDetails.truckStockNumber)"></input>
+		<textarea class="cdComment" type="text" name="comment" ng-model="contactDetails.comment" placeholder="Client Comment"  ng-change="editContactByField('comment',contactDetails.comment)"></textarea>
+	</div>
+</div>
+<div class="cdRight">
+	Admin Features
+	<br>
+	<div class="cdAdminRow">Contact Status: <select class="cdName" name="statusText" ng-model="statussss" ng-options="status.statusNum as status.statusText for status in contactStatusArray" ng-change="editContactByField('status',statussss)"></select></div><br><br>
+	Admin Comment for this contact: <br>
+	<textarea class="cdAdminComment" name="adminComment" ng-model="contactDetails.adminComment" placeholder="Admin Comment" ng-change="editContactByField('adminComment',contactDetails.adminComment)"></textarea>
+	<div style="clear:left"></div>
+	<div class="cdBigText">Contact History:</div>
+	<div ng-switch on="contactDetails.lastContacted">
+		<div ng-switch-when="0">
+			<div class="cdField" name="lastContacted">Last Contacted: Never Contacted</div>
+		</div>
+		<div ng-switch-default>
+			<div class="cdField">Last Contacted: {{contactDetails.lastContacted | date}}</div>
+		</div>
+	</div>
+	<div style="clear:left"></div>
+	<div class="cdTextTitle">Date:</div><input class="cdContactHistoryDate" type="date" name="cdContactHistoryDate" ng-model="newContactHistory.date" ng-change="showSubmitEntryButton = true"></input>
+	<div class="cdTextTitle">Note:</div><textarea class="cdContactHistoryNote" name="cdContactHistoryNote" ng-model="newContactHistory.note" ng-change="showSubmitEntryButton = true" placeholder="New note for this contact's contact history"></textarea>
+	<button class="cdSubmitEntryButton" ng-show="showSubmitEntryButton" ng-click="submitNewEntry()">Submit new history entry</button>
+	<div class="cdErrorText2" ng-show="newEntryError">There was an error submitting this history entry</div>
+	<div style="clear:left"></div>
+	<div class="cdPreviousContactHistoryContainer">
+		<div ng-repeat="entry in contactDetails.historyEntries | orderBy:'timeRecieved':true" ng-switch on="entry.date">
+			<div ng-switch-when="general" ng-style="alternateColor($index)" class="cdHistoryEntry">General - {{entry.comment}}</div>
+			<div ng-switch-default ng-style="alternateColor($index)" class="cdHistoryEntry">{{entry.date | date}} - {{entry.comment}}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+<!doctype html>
+ 
+<html lang="en" ng-app="TRUCKLISTING">
+<head>
+    <meta charset="utf-8" />
+    <title>Truck Listing</title>
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/landing.css" rel="stylesheet">
+    <link href="css/truckDetails.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="css/editTruckDetails.css" rel="stylesheet">
+    <link href="css/contacts.css" rel="stylesheet">
+    <link href="css/editContact.css" rel="stylesheet">
+    <!--<link href="css/angular-ui.min.css" rel="stylesheet">-->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/jquery-1.9.1.min.js"></script>
+    <script src="lib/jquery-ui.min.js"></script>
+    <!--<script src="lib/jquery-ui-touch-punch.js"></script>-->
+    <!--<script src="lib/angular-ui.min.js"></script>-->
+
+    <script src="src/app.js"></script>
+    <script src="src/mainCtrl.js"></script>
+    <script src="src/detailsCtrl.js"></script>
+    <script src="src/adminCtrl.js"></script>
+    <script src="src/contactsCtrl.js"></script>
+    <script src="src/editTruckCtrl.js"></script>
+    <script src="src/editContactCtrl.js"></script>
+    <script src="src/navBarCtrl.js"></script>
+</head>
+<body>
+    <div ng-controller="mainCtrl">
+        <div ng-view ng-include="'templates/landing.html'"></div>
+    </div>
+</body>
+</html>

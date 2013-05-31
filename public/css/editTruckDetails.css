@@ -1,0 +1,26 @@
+.etdTruckButton{
+	cursor: pointer;
+	float:left;
+	background-color: white;
+	border: 2px solid black;
+	margin-left: 5px;
+	margin-top:20px;
+}
+.etdError{
+	color:red;
+}
+.etdImage{
+	width:50px;
+}
+.etdImageDiv1{
+	float:left;
+	margin-top: 65px;
+}
+.etdImageDiv2{
+	float:left;
+}
+.etdStatusSelect{
+	float:left;
+	margin-left: 7px;
+	width: 385px;
+}

@@ -1,0 +1,64 @@
+<div class="truckDetails" ng-controller="detailsCtrl">
+    <div class="tdTitle">&nbsp{{detailsData.theYear}} {{detailsData.make}} {{detailsData.model}}</div>
+    <div class="tdInfo">
+        <div class="tdSectionHeader">General Info</div>
+        <div class="tdSubSection1">Model</div>
+        <div class="tdSubSection2">{{detailsData.model}}</div>
+        <div class="tdSubSection1">Miles</div>
+        <div class="tdSubSection2">{{detailsData.miles}}</div>
+        <div class="tdSubSection1">Stock #</div>
+        <div class="tdSubSection2">{{detailsData.stockNumber}}</div>
+        <div class="tdSubSection1">Year</div>
+        <div class="tdSubSection2">{{detailsData.theYear}}</div>
+        <div class="tdSubSection1">VIN</div>
+        <div class="tdSubSection2">{{detailsData.vin}}</div>
+        <div class="tdSubSection1">Color</div>
+        <div class="tdSubSection2">{{detailsData.color}}</div>
+        <div class="tdSectionHeader">Engine Info</div>
+        <div class="tdSubSection1">Engine</div>
+        <div class="tdSubSection2">{{detailsData.engine}}</div>
+        <div class="tdSubSection1">Engine Make</div>
+        <div class="tdSubSection2">{{detailsData.engineModel}}</div>
+        <div class="tdSubSection1">Horsepower</div>
+        <div class="tdSubSection2">{{detailsData.horsepower}}</div>
+        <div class="tdSubSection1">DEF</div>
+        <div class="tdSubSection2">{{detailsData.def}}</div>
+        <div class="tdSectionHeader">Transmission Info</div>
+        <div class="tdSubSection1">Transmission</div>
+        <div class="tdSubSection2">{{detailsData.transmission}}</div>
+        <div class="tdSectionHeader">Drive Info</div>
+        <div class="tdSubSection1">Axle Ratio</div>
+        <div class="tdSubSection2">{{detailsData.axleRatio}}</div>
+        <div class="tdSectionHeader">Notes</div>
+        <div class="tdSubSectionNotes">{{detailsData.notes}}</div>
+        <div class="tdLine"></div>
+        <div class="tdSubSection1 tdPrice1">Price {{detailsData.price | currency}}</div>
+    </div>
+    <div class="tdImages">
+        <div class="tdBigImage"><img ng-src="assets/{{currentImage}}" class="tdBigImage" alt="Image Error"></div>
+        <div ng-repeat="image in detailsData.images">
+            <div class="tdSmallImage" ng-click="currentImage = image.largeFilename" ng-show="!$first"><img ng-src="assets/{{image.tileFilename}}" class="tdSmallImage" ng-click="currentImage = image.largeFilename" alt="Image Error"></div>
+        </div>
+    </div>
+    <div class="tdContact">
+        <div ng-switch on="whichContactView">
+            <div ng-switch-when="new">
+                <div class="tdContactTitle">Contact Us</div>
+                <form name="contactUs">
+                    <input type="text" name="name" autofocus ="true" maxlength="40" placeholder="Your Name" class="tdContactField" ng-model="contact.name" required>
+                    <input type="text" name="email" maxlength="50" placeholder="Your Email" class="tdContactField" ng-model="contact.email" required>
+                    <input type="text" name="phoneNumber" maxlength="15" placeholder="Your Phone Number" class="tdContactField" ng-model="contact.phoneNumber">
+                    <input type="text" name="whenBestContact" maxlength="160" placeholder="When to best contact you" class="tdContactField" ng-model="contact.whenBestContact">
+                    <input type="text" name="comment" maxlength="2048" placeholder="Your Comments or Questions" class="tdContactField" ng-model="contact.comment">
+                    <input type="button" name="submitContact" value="Submit" ng-click="sendContact()">
+                </form>
+            </div>
+            <div ng-switch-when="success">
+                <div class="tdSubmittedContactMessage">Your contact information was successfully sent. We will be in contact with you shortly.</div>
+            </div>
+            <div ng-switch-when="failure">
+                <div class="tdSubmittedContactMessage">There was an error when sending your contact information. We will fix this soon. In the meantime, you can email us directly at <a href="mailto:email@gmail.com">email@gmail.com</a></div>
+            </div>
+        </div>
+    </div>
+</div>

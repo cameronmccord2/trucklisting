@@ -1,0 +1,127 @@
+.cdName,.cdComment{
+	float:right;
+	width: 205px;
+	padding-bottom: 1px;
+	margin-right: 4px;
+}
+.cdAdminComment{
+	float:left;
+	width:690px;
+	min-height: 50px;
+}
+.cdLeft, .cdRight{
+	margin-top: 30px;
+}
+.cdLeft{
+	float:left;
+	width:300px;
+	height:474px;
+	background-color:rgb(224, 224, 224);
+}
+.cdRight{
+	float:left;
+	width:700px;
+	height:474px;
+	background-color: rgb(185,189,174);
+}
+.cdRow{
+	float:left;
+	width:300px;
+}
+.cdLeftLeft{
+	float:left;
+	height:100%;
+}
+.cdLeftRight{
+	float:left;
+	height:100%;
+	width: 215px;
+}
+.cdTitle{
+	width: 85px;
+	padding-bottom: 5px;
+}
+.cdDark{
+	background-color: brown;
+}
+.cdLight{
+	background-color: blue;
+}
+.cdComment{
+	min-height:100px;
+	height:300px;
+	max-height:315px;
+	width: 203px;
+}
+.cdAdminRow{
+	float:left;
+	width: 315px;
+	height:30px;
+}
+.cdField{
+	float:right;
+	padding-right: 2px;
+}
+.cdBigText{
+	font-size: 120%;
+	float:left;
+	width:55%;
+}
+.cdContactHistoryNote{
+	float: left;
+	margin-left: 2px;
+	max-width: 470px;
+	width:470px;
+	min-height:32px;
+}
+.cdContactHistoryDate{
+	float:left;
+}
+.cdTextTitle{
+	float:left;
+	margin-left: 3px;
+}
+.cdHistoryEntry{
+	float:left;
+	display:block;
+	width:100%;
+	background-color: white;
+}
+.cdPreviousContactHistoryContainer{
+	float:left;
+	width:96%;
+	height:230px;
+	overflow: auto;
+	margin: 10px 2% 10px 2%;
+	background-color: rgba(255, 255, 255, 0.93);
+}
+.cdSubmitEntryButton{
+	float:left;
+}
+.cdErrorText{
+	color:red;
+	float:left;
+	width: 80px;
+}
+.cdErrorText2{
+	color:red;
+	float:left;
+	width:100%;
+}
+.cdToolbar{
+	float:left;
+	width:1000px;
+	height:38px;
+	position: fixed;
+	z-index: 10;
+	background-color: darkgrey;
+	margin-top: -8px;
+}
+.cdNavButton{
+	float:left;
+	margin-left: 10px;
+}
+.cdNavButtonLogout{
+	float:right;
+	margin-right:10px;
+}

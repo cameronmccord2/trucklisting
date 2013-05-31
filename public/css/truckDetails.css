@@ -1,0 +1,103 @@
+.truckDetails{
+    width: 800px;
+    float:left;
+    margin-top: 30px;
+}
+.tdTitle{
+    width: 100%;
+    font-size: 70px;
+    color: black;
+    background-color: rgb(180,180,180);
+}
+.tdSectionHeader{
+    float:left;
+    width: 400px;
+    font-size: 22px;
+    color: white;
+    background-color: rgb(112,112,112);
+    padding-left: 5px;
+}
+.tdSubSection1{
+    float: left;
+    font-size: 16px;
+    color: black;
+    background-color: rgb(224, 224, 224);
+    width: 191px;
+    display:block;
+    padding-left: 10px;
+}
+.tdSubSection2{
+    float: left;
+    font-size: 16px;
+    color: black;
+    background-color: rgb(224, 224, 224);
+    width: 199px;
+    display:block;
+    height: 20px;
+}
+.tdSubSectionNotes{
+    float: left;
+    font-size: 16px;
+    color: black;
+    background-color: rgb(224, 224, 224);
+    width: 400px;
+    display:block;
+    padding-left: 10px;
+}
+.tdInfo{
+    width: 400px;
+    float: left;
+    height: 602px;
+    background-color: rgb(224, 224, 224);
+}
+.tdImages{
+    width: 400px;
+    float: left;
+    background-color: rgb(224, 224, 224);
+}
+.tdSmallImage{
+    width: 100px;
+    float: left;
+    cursor: pointer;
+}
+.tdBigImage{
+    width: 400px;
+    height:275px;
+    float: left;
+}
+.tdContact{
+    width: 400px;
+    height:252px;
+    float: left;
+    background-color: rgb(224, 224, 224);
+}
+.tdContactTitle{
+    width:400px;
+    float:left;
+    color: black;
+    font-size: 18px;
+    background-color: rgb(202, 202, 202);
+}
+.tdContactField{
+    width:385px;
+    float:left;
+    margin-left: 5px;
+}
+.tdPrice1{
+    margin-left: 18px;
+    font-size: 24px;
+    padding-top: 30px;
+}
+.tdLine{
+    border: 2px solid rgb(112,112,112);
+    float: left;
+    margin: 30px 3% 0px 3%;
+    width: 94%;
+
+}
+.tdSubmittedContactMessage{
+    font-size: 17px;
+    margin: 40px;
+    background-color: white;
+    border: 2px solid grey;
+}

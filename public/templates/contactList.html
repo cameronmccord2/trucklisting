@@ -1,0 +1,25 @@
+<div ng-include="'templates/navBar.html'"></div>
+<div class="cBox">
+	<div class="cErrorText" ng-show="flags.editSuccess == flagStatus.error">There was an error submitting that change to the server</div>
+	<div class="cSortRow">
+		<div class="cSortText" ng-click="sortBy('name')">Name</div>
+		<div class="cSortText" ng-click="sortBy('email')">Email</div>
+		<div class="cSortText" ng-click="sortBy('bestContact')">Best Contact</div>
+		<div class="cSortText" ng-click="sortBy('phoneNumber')">Phone #</div>
+		<div class="cSortText" ng-click="sortBy('timeRecieved')">Recieved</div>
+		<div class="cSortText" ng-click="sortBy('status')">Status</div>
+		<div class="cSortText" ng-click="sortBy('comment')">Comment</div>
+		<button class="newContactButton" ng-click="newContact()" title="Create a blank contact">New Contact</button>
+	</div>
+	<div class="cContactList" ng-repeat="contact in contacts | orderBy:contactOrder.column:contactOrder.reverse">
+		<div class="cRow">
+			<input type="text" class="cName" ng-model="contact.name" title="{{contact.name}}" placeholder="Name" ng-change="editContactByField('name',contact.name,contact._id)"></input>
+			<input type="text" class="cEmail" ng-model="contact.email" title="{{contact.email}}" placeholder="Email" ng-change="editContactByField('email',contact.email,contact._id)"></input>
+			<input type="text" class="cWhenBestContact" ng-model="contact.whenBestContact" title="{{contact.whenBestContact}}" placeholder="When Best Contact" ng-change="editContactByField('whenBestContact',contact.whenBestContact,contact._id)"></input>
+			<input type="text" class="cPhoneNumber" ng-model="contact.phoneNumber" title="{{contact.phoneNumber}}" placeholder="Phone Number" ng-change="editContactByField('phoneNumber',contact.phoneNumber,contact._id)"></input>
+			<div class="cRecieved" ng-bind-html-unsafe="contact.timeRecieved | date" title="{{contact.timeRecieved | date}}" ng-click="contactDetails(contact)"></div>
+			<select class="cStatus" name="statusSelect" ng-model="contact.status" ng-options="status.statusNum as status.statusText for status in contactStatusArray" ng-change="editContactByField('status',contact.status,contact._id)"></select>
+			<input type="text" class="cComment" ng-model="contact.comment" title="{{contact.comment}}" placeholder="Client Comment" ng-change="editContactByField('comment',contact.comment,contact._id)"></input>
+		</div>
+	</div>
+</div>

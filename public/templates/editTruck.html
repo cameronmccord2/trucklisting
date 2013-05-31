@@ -1,0 +1,75 @@
+<div ng-include="'templates/navBar.html'"></div>
+<div class="truckDetails" ng-controller="editTruckCtrl">
+    <div class="tdInfo">
+        <!-- <div class="tdSectionHeader">General Info</div> -->
+        <div class="tdSubSection1">Model</div>
+        <input type="text" class="etdInput" ng-model="detailsData.model" ng-change="editTruckByField('model',detailsData.model,detailsData._id)" placeholder="Model"></input>
+        <div class="tdSubSection1">Miles</div>
+        <input type="text" class="etdInput" ng-model="detailsData.miles" ng-change="editTruckByField('miles',detailsData.miles,detailsData._id)" maxlength="8" placeholder="miles(numbers only)"></input>
+        <div class="tdSubSection1">Stock #</div>
+        <input type="text" class="etdInput" ng-model="detailsData.stockNumber" ng-change="editTruckByField('stockNumber',detailsData.stockNumber,detailsData._id)" maxlength="5" placeholder="Stock #(numbers only)"></input>
+        <div class="tdSubSection1">Year</div>
+        <input type="text" class="etdInput" ng-model="detailsData.year" ng-change="editTruckByField('year',detailsData.year,detailsData._id)" maxlength="4" placeholder="Year(numbers only)"></input>
+        <div class="tdSubSection1">VIN</div>
+        <input type="text" class="etdInput" ng-model="detailsData.vin" ng-change="editTruckByField('vin',detailsData.vin,detailsData._id)" maxlength="20" placeholder="Model"></input>
+        <div class="tdSubSection1">Color</div>
+        <input type="text" class="etdInput" ng-model="detailsData.color" ng-change="editTruckByField('color',detailsData.color,detailsData._id)" placeholder="Model"></input>
+        <!-- <div class="tdSectionHeader">Engine Info</div> -->
+        <div class="tdSubSection1">Engine</div>
+        <input type="text" class="etdInput" ng-model="detailsData.engine" ng-change="editTruckByField('engine',detailsData.engine,detailsData._id)" placeholder="Engin"></input>
+        <div class="tdSubSection1">Engine Make</div>
+        <input type="text" class="etdInput" ng-model="detailsData.engineModel" ng-change="editTruckByField('engineModel',detailsData.engineModel,detailsData._id)" placeholder="Engine Make"></input>
+        <div class="tdSubSection1">Horsepower</div>
+        <input type="text" class="etdInput" ng-model="detailsData.horsepower" ng-change="editTruckByField('horsepower',detailsData.horsepower,detailsData._id)" placeholder="Horsepower"></input>
+        <div class="tdSubSection1">DEF</div>
+        <select class="etdInput" ng-model="detailsData.def" ng-change="editTruckByField('def',detailsData.def,detailsData._id)">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <!-- <div class="tdSectionHeader">Transmission Info</div> -->
+        <div class="tdSubSection1">Transmission</div>
+        <input type="text" class="etdInput" ng-model="detailsData.transmission" ng-change="editTruckByField('transmission',detailsData.transmission,detailsData._id)" placeholder="Transmission"></input>
+        <!-- <div class="tdSectionHeader">Drive Info</div> -->
+        <div class="tdSubSection1">Axle Ratio</div>
+        <input type="text" class="etdInput" ng-model="detailsData.axleRatio" ng-change="editTruckByField('axleRatio',detailsData.axleRatio,detailsData._id)" placeholder="Axle Ratio"></input>
+        <!-- <div class="tdSectionHeader">Notes</div> -->
+        <div class="tdSubSection1">Notes</div>
+        <input type="text" class="etdInput" ng-model="detailsData.notes" ng-change="editTruckByField('notes',detailsData.notes,detailsData._id)" placeholder="Notes(client sees)"></input>
+        <div class="etdLine"></div>
+        Price: <input type="text" class="etdInput" ng-model="detailsData.price" ng-change="editTruckByField('price',detailsData.price,detailsData._id)" maxlength="6" placeholder="Price(numbers only)">{{detailsData.price | currency}}</input>
+        <div class="tdSubSection1">Status</div>
+        <select class="etdStatusSelect" ng-model="detailsData.status" ng-change="editTruckByField('status', detailsData.status, detailsData._id)" ng-options="status.statusNum as status.longMessage for status in truckStatusArray"></select>
+        <div style="clear:left"></div>
+        <div class="tdSubSection1">Precidence(lower number is higher on page)</div>
+        <input type="text" class="etdInput" ng-model="detailsData.precidence" ng-change="editTruckByField('precidence', detailsData.precidence, detailsData._id)" maxlength="4" placeholder="Precidence(numbers only)"></input>
+        <div style="clear:left"></div>
+        <div class="tdSubSection1">Admin Notes</div>
+        <input type="text" class="etdInput" ng-model="detailsData.adminNotes" ng-change="editTruckByField('adminNotes', detailsData.adminNotes, detailsData._id)" placeholder="Notes(client doesnt see)"></input>
+        <div style="clear:left"></div>
+        <div class="tdSubSection1">Tile Image</div>
+        <select class="etdInput" ng-model="tileImage" ng-change="editTruckByField('tileImage', tileImage, detailsData._id)" ng-options="image.tileFilename as image.tileFilename for image in detailsData.images"></select>
+        <div style="clear:left"></div>
+        <div class="tdSubSection1">Large Image</div>
+        <select class="etdInput" ng-model="largeImage" ng-change="editTruckByField('largeImage', largeImage, detailsData._id)" ng-options="image.largeFilename as image.largeFilename for image in detailsData.images"></select>
+        <div class="tdSubSection1">Times Clicked: {{detailsData.timesClicked}}</div>
+        <div class="tdSubSection1"># of images: {{detailsData.images.length}}</div>
+        <div class="tdSubSection1">Date Added: {{detailsData.dateAdded | date}}</div>
+        <div class="tdSubSection1">Last Edited: {{detailsData.lastEdited | date}}</div>
+    </div>
+    <div class="tdImages">
+        <div class="tdBigImage"><img ng-src="assets/{{currentImage}}" class="tdBigImage" alt="Click 'Set Needs Image'"></div>
+        <div ng-repeat="image in detailsData.images">
+            <div class="tdSmallImage" ng-click="currentImage = image.largeFilename" ng-show="!$first"><img ng-src="assets/{{image.tileFilename}}" class="tdSmallImage" ng-click="currentImage = image.largeFilename" alt="Click 'Set Needs Image'"></div>
+        </div>
+    </div>
+    <div class="tdContact">
+        <div class="etdTruckButton" ng-show="detailsData.needsImage == false" ng-click="needsImage()">Set Needs Image</div>
+        <div class="etdTruckButton" ng-show="detailsData.needsImage == true" ng-click="needsImage()">Unset Needs Image</div>
+        <div class="etdError" ng-show="flags.removeError">There was a problem removing this truck. Try again, refresh, or contact Cameron</div>
+        <div class="etdError" ng-show="flags.updateError">There was a problem updating this truck. Try again, refresh, or contact Cameron. Server Message: {{flags.updateErrorMessage}}</div>
+        <div style="clear:left"></div>
+        <div class="etdImageDiv1"><img class="etdImage" ng-src="assets/{{detailsData.stockNumber}}/{{tileImage}}"></div>
+        <div style="clear:left"></div>
+        <div class="etdImageDiv2"><img class="etdImage" ng-src="assets/{{detailsData.stockNumber}}/{{largeImage}}"></div>
+    </div>
+</div>

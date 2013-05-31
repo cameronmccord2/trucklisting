@@ -163,7 +163,6 @@ var TruckListingApp = function() {
         self.app.param('id');
 
         //static paths
-        self.app.get('/test', api.testDbCall);
         self.app.get('/truckData/allTrucks', clientTruckData.allTrucks);
         self.app.get('/truckAdmin/getClicks', adminTruckClicks.truckClicks);
         self.app.get('/truckAdmin/contact/all', adminContacts.allContacts);

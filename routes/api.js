@@ -23,32 +23,3 @@ var useNewData = false;
 var nodeSessionId = Math.floor(Math.random()*10000);
 
 console.log("api here" + nodeSessionId)
-
-exports.testDbCall = function(req,res){
-	console.log('in testdbcall')
-	Db.connect(url,function(err,db){
-		console.log('in connect function')
-		if(err){
-			res.send(500,"error connecting to db");
-			console.log("first connect error")
-			res.end();
-			db.close();
-			return;
-		}else{
-			console.log('successful connect')
-			var collection = db.collection('testCollection');
-			collection.find().toArray(function(err,clicks){
-				if(err){
-					console.log("error on find method in adminTruckClicks");
-					res.send(400, "error on find method in adminTruckClicks");
-				}else{
-					console.log('got all clicks');
-					res.json(200, clicks);
-				}
-				db.close();
-				res.end();
-			});
-		}
-	});
-	console.log('after testdbcall')
-}

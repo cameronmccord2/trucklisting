@@ -191,15 +191,18 @@ exports.updateTruck = function(req,res){
 						res.end();
 						return;
 					}else{
-						collection.find({_id:ObjectId(req.get('id'))}).toArray(function(err,result2){
-							if(err){
-								res.send(500, "error finding a truck by that id");
-							}else{
-								res.send(200, result2[0]);
-							}
-							db.close();
-							res.end();
-						});
+						res.send(200,1);
+						db.close();
+						res.end();
+						// collection.find({_id:ObjectId(req.get('id'))}).toArray(function(err,result2){
+						// 	if(err){
+						// 		res.send(500, "error finding a truck by that id");
+						// 	}else{
+						// 		res.send(200, result2[0]);
+						// 	}
+						// 	db.close();
+						// 	res.end();
+						// });
 					}
 				});
 			}

@@ -7,7 +7,7 @@ var fs = require('fs');
 
 var nodeSessionId = Math.floor(Math.random()*10000);
 
-var url = "mongodb://54.214.247.68:27017";
+var url = "mongodb://54.214.247.68:27017/trucklisting";
 console.log("Mongo url: " + url);
 // End mongodb required stuff
 
@@ -30,8 +30,15 @@ var doPhoto = function(saveDirectory, file, truck, status, type, dbId){
 		fs.rename(file.path, saveDirectory + dbId + '.jpg', function(err){
 			if(err)
 				console.log('couldnt move file, error: ' + err);
-			else
-				console.log('moved file success');
+			else{
+				console.log('moved file success: ' + saveDirectory + dbId + '.jpg');
+				// fs.unlink(saveDirectory + dbId + '.jpg',function(err){
+				// 	if(err){
+				// 		console.log('there was an error deleting the file');
+				// 	}else
+				// 		console.log('deleted the file');
+				// });
+			}
 		});
 	}
 
@@ -45,16 +52,20 @@ var doPhoto = function(saveDirectory, file, truck, status, type, dbId){
 	}
 
 	this.checkTempFile = function(){
-		fs.exists(file.path, function(exists){
-			console.log(file.path + ' exists: ' + exists);
-			if(!exists)
-				console.log('temp file: ' + file.path + ' doesnt exitst');
-			else
-				this.checkConflictsDestination();
-		})
+		if(file.path != undefined)
+			fs.exists(file.path, function(exists){
+				console.log(file.path + ' exists: ' + exists);
+				if(!exists)
+					console.log('temp file: ' + file.path + ' doesnt exitst');
+				else
+					this.checkConflictsDestination();
+			});
+		else
+			console.log('file.path is undefined')
 	}
 
 	this.checkDirectory = function(){
+		console.log('in check directory')
 		fs.exists(saveDirectory, function(exists){
 			console.log(saveDirectory + ' exists: ' + exists);
 			if(!exists)
@@ -64,11 +75,17 @@ var doPhoto = function(saveDirectory, file, truck, status, type, dbId){
 		});
 	}
 	console.log('in here')
-	this.checkDirectory();
+	if(saveDirectory != undefined && file != undefined && truck != undefined 
+		&& status != undefined && dbId != undefined && type != undefined)
+		this.checkDirectory();
+	else
+		console.log('something was undefined')
 }
 
 exports.uploadPhoto = function(req, res){
 	console.log("in uploadPhoto");
+	console.log(req.body)
+	console.log('after body')
 	var assets = './public/assets/';
 
 	Db.connect(url,function(err,db){
@@ -80,56 +97,38 @@ exports.uploadPhoto = function(req, res){
 		}else{
 			console.log('before get collection')
 			var collection = db.collection('truckImages');
-			console.log('afeter get db collection' + req.body.length)
-			for (var i = req.body.files[i].length - 1; i >= 0; i--) {
-				console.log('before image')
-				var image = {
-					'location':assets,
-					'from':req.body.files[i].from,
-					'forTruck':req.body.files[i].forTruck,
-					'photoType':req.body.files[i].photoType,
-					'photoStatus':req.body.files[i].photoStatus,
-					'uploadName':req.body.files[i].uploadName
-				};
-				console.log('inserting')
-				collection.insert(image, {w:1}, function(result){
-					console.log('in insert into truckimages: ' + result)
-					doPhoto(assets, req.files[req.body.files[i].uploadName], req.body.files[i].forTruck, 
-					req.body.files[i].photoStatus, req.body.files[i].photoType, result._id);
-				});
+			console.log('afeter get db collection')
+			for (var i = req.body.files.length - 1; i >= 0; i--) {
+				if(req.body.files[i].from != undefined && req.body.files[i].forTruck != undefined && 
+					req.body.files[i].photoType != undefined && req.body.files[i].photoStatus != undefined && 
+					req.body.files[i].uploadName != undefined){
+					console.log('before image')
+					var image = {
+						'location':assets,
+						'from':req.body.files[i].from,
+						'forTruck':req.body.files[i].forTruck,
+						'photoType':req.body.files[i].photoType,
+						'photoStatus':req.body.files[i].photoStatus,
+						'uploadName':req.body.files[i].uploadName
+					};
+					console.log('inserting')
+					var id = collection.insert(image, {w:1}, function(result){
+						console.log('image', image)
+						console.log('in insert into truckimages: ' + result)
+						doPhoto(assets, req.files[image.uploadName], image.forTruck, 
+						image.photoStatus, image.photoType, image._id);
+						console.log('after doPhoto');
+						if(i == 0){
+							res.send("bla");// never gets here yet without real data
+							db.close();
+							res.end();
+						}
+					});
+					console.log('after insert');
+				}else
+					console.log('something was undefined in files[i]')
 			};
-			res.send("bla");
-			db.close();
-			res.end();
+			res.send(100);
 		}
 	});
-
-	// [{"from"="me","forTruck":"12345","photoType":1,"photoStatus":2,"uploadName":"fileUpload"},{"from":"me","forTruck":"12345","photoType":1,"photoStatus":2,"uploadName":"fileUpload"}]
-
-	
-	// console.log(req)
-	// console.log(req.files)
-	//console.log(req);
-
-	//var tempFilePath = req.files.image.path;
-	
-	fs.exists('./public/index.html', function(exists){
-		console.log('./public/index exists: ' + exists);
-	});
-	
-	// fs.exists('./public/images/' + req.headers.stockNumber, function(exists){
-	// 	if(!exists)
-	// 		fs.mkdirSync('./public/images/' + req.headers.stockNumber);// might need callback or slash after new folder name
-	// 	var targetPath = './public/images/' + req.headers.stockNumber + '/' + req.files.image.name;
-	// 	fs.rename(tempFilePath,targetPath, function(err){
-	// 		if(err)
-	// 			throw err;
-	// 		fs.unlink(tempFilePath, function(){
-	// 			if(err) throw err;
-	// 			res.send("File uploaded to: " targetPath + ' - ' + req.files.image.size + ' bytes');
-	// 		});
-	// 	});
-	// });
-	
-
 }

@@ -6,6 +6,34 @@ function editTruckCtrl($scope, $routeParams, $rootScope, $http, $location, $q){
     $scope.flags.updateError = false;
     $scope.flags.updateErrorMessage = "";
 
+    // var temp = new Array();
+    // var s = {
+    //     'location':'assets',
+    //     'from':'me',
+    //     'forTruck':12345,
+    //     'photoType':1,
+    //     'photoStatus':2,
+    //     'uploadName':'fileUpload'
+    // }
+    // temp.push(s);
+    // var s = {
+    //     'location':'assets',
+    //     'from':'me',
+    //     'forTruck':12345,
+    //     'photoType':1,
+    //     'photoStatus':2,
+    //     'uploadName':'fileUpload1'
+    // }
+    // temp.push(s);
+    // var files = new Object();
+    // files.files = temp;
+    // console.log(angular.toJson(files))
+    // $http.post($rootScope.nodeUrl + '/truckPhoto', files).success(function(data){
+    //     console.log('success', data);
+    // }).error(function(data){
+    //     console.log('error', data);
+    // });
+
     if($routeParams.stockNumber)
         $http.get($rootScope.nodeUrl + "/truckAdmin/specificTruck/" + $routeParams.stockNumber, '').success(function (data) {
             $scope.detailsData = data;

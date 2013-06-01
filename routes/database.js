@@ -3,10 +3,11 @@ var Db = require('mongodb').Db;
 var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var ObjectId = require('mongodb').ObjectID;
+var fs = require('fs');
 
 var nodeSessionId = Math.floor(Math.random()*10000);
 
-var url = "mongodb://10.245.74.171:27017";
+var url = "mongodb://54.214.247.68:27017/trucklisting";
 console.log("Mongo url: " + url);
 // End mongodb required stuff
 
@@ -98,19 +99,6 @@ exports.setup = function(req,res){
 	    				}else{
 		    				console.log("there are " + count + " records.");
 		    				res.send(200,"the count is: " + count);
-		    				var collection2 = db.collection("truckSetup");
-				    		collection2.insert(truckSetup, {w:1}, function(result){
-				    			collection2.find().toArray(function(err, result){
-				    				if(err){
-				    					console.log("find truckSetup errorrr");
-    									res.send(500, "find truckSetup errorrr");
-				    				}else{
-				    					res.send(200,'truckSetup complete');
-				    				}
-				    				db.close();
-	    							res.end();
-				    			});
-				    		});
 		    			}
 	    			});
 	    		});

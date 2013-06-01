@@ -95,15 +95,24 @@ exports.setup = function(req,res){
 	    				if(err){
 	    					console.log("count errorrr");
 	    					res.send(500,"count error");
-	    				}
-	    				else{
+	    				}else{
 		    				console.log("there are " + count + " records.");
 		    				res.send(200,"the count is: " + count);
+		    				var collection2 = db.collection("truckSetup");
+				    		collection2.insert(truckSetup, {w:1}, function(result){
+				    			collection2.find().toArray(function(err, result){
+				    				if(err){
+				    					console.log("find truckSetup errorrr");
+    									res.send(500, "find truckSetup errorrr");
+				    				}else{
+				    					res.send(200,'truckSetup complete');
+				    				}
+				    				db.close();
+	    							res.end();
+				    			});
+				    		});
 		    			}
-		    			db.close();
-	    				res.end();
 	    			});
-
 	    		});
 	    	});
 	    });

@@ -6,14 +6,14 @@ var ObjectId = require('mongodb').ObjectID;
 
 var nodeSessionId = Math.floor(Math.random()*10000);
 
-var url = "mongodb://10.245.74.171:27017";
+var url = "mongodb://54.214.247.68:27017";
 console.log("Mongo url: " + url);
 // End mongodb required stuff
 
 exports.allTrucks = function(req,res){
 	Db.connect(url,function(err,db){
 		if(err){
-			res.send(500,"error connecting to db");
+			res.send(500,"error connecting to db" + err);
 			res.end();
 			return;
 		}else{
